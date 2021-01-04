@@ -1,0 +1,41 @@
+
+//Sub Game Pefect Equilibrium
+
+%matplotlib inline
+
+    import numpy as np
+    import random
+    V = np.random.normal(size=1000)
+    U = np.random.normal(size=1000)
+    D = []
+    s = 0
+    SUM = 0
+    countN = 0
+    SUMb = 0
+    countb = 0
+    SUMn = 0
+    countn = 0
+    
+    for i in range(1000):
+        V[i] = V[i]*25+50
+        U[i] = U[i]*25+50
+
+    for n in range(13728):
+        for b in range(2):
+            x = 0
+            D = []
+            for i in range(1000):
+                s = V[i]*(n+1)*(n+1)/188457984
+                D.append(s)
+                if V[i]-D[i]+b*5 > U[i]:
+                    x = x+1
+            SUM = 5*x*4153200 - b*863000 - 272800*(13728-n-1)
+            if SUMb < SUM:
+                countb = b
+                y = x
+                SUMb = SUM
+        if SUMn < SUMb:
+            SUMn = SUMb
+            countn = n+1
+            countN = y
+    print SUMn, countn, countN, countb
